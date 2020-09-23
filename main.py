@@ -16,27 +16,26 @@ def send_message(message):
 
 
 def main():
-    print("Starting Teelgram RSS bot..")
+    print("Starting Telegram RSS bot..")
 
     for feed in config.Feeds.urls:
         feed = feedparser.parse(feed)
         for entry in feed.entries:
 
             parsed_date = parser.parse(entry.published)
-            parsed_date = (parsed_date - timedelta(hours=8)).replace(tzinfo=None)
+            parsed_date = parsed_date.replace(tzinfo=None)
             now_date = datetime.utcnow()
-
             post = "💬 {0}\n{1}".format(
                 entry.title,
                 entry.links[0].href
             )
 
-            published_20_minutes_ago = now_date - parsed_date < timedelta(minutes=20)
-            if published_20_minutes_ago:
-                send_message(post)
+            if parsed_date < now_date:
+                if parsed_date > now_date - timedelta(minutes=config.Feeds.delay):
+                    send_message(post)
 
 
 if __name__ == "__main__":
     while True:
         main()
-        sleep(20 * 60)
+        sleep(config.Feeds.delay * 60)

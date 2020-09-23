@@ -11,3 +11,4 @@ class Feeds:
         'your_first_feed_url',
         'your_second_feed_url',
     ]
+    delay = 5
