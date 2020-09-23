@@ -1,6 +1,3 @@
-# Based on:
-# https://medium.com/@ljmocic/make-telegram-bot-for-notifying-about-new-rss-feed-items-4cfbcc37f4fd
-
 from datetime import timedelta, datetime
 from time import sleep
 import urllib.parse
