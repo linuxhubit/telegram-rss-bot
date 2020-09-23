@@ -1,4 +1,4 @@
-# Read more about setting it up
+# Based on:
 # https://medium.com/@ljmocic/make-telegram-bot-for-notifying-about-new-rss-feed-items-4cfbcc37f4fd
 
 from datetime import timedelta, datetime
@@ -19,6 +19,7 @@ def send_message(message):
 
 
 def main():
+    print("Starting Teelgram RSS bot..")
 
     for feed in config.Feeds.urls:
         feed = feedparser.parse(feed)
